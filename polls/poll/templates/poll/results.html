@@ -1,15 +1,17 @@
 {% extends 'poll/base.html' %}
 
-{% block body %}
-<main>
-    <h1>{{ question.question_text }}</h1>
-
-    <ul>
+{% block content %}
+<h1>{{ question.question_text }}</h1>
+<br />
+<hr />
+<br />
+<ul style="text-align: left;">
     {% for choice in question.choice_set.all %}
-        <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+    <li>{{ choice.choice_text }} -- <b>{{ choice.votes }} vote{{ choice.votes|pluralize }}</b></li>
     {% endfor %}
-    </ul>
-    
-    <a href="{% url 'poll:detail' question.id %}">Vote again?</a>
-</main>
+</ul>
+<br />
+<hr />
+<br />
+<a href="{% url 'poll:index' %}" class="btn btn-secondary" style="color: white;">Home</a>
 {% endblock %}
